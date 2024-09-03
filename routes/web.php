@@ -1,8 +1,14 @@
 <?php
 
+use App\Livewire\EmployeeShow;
+use App\Livewire\Home;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::get('/', Home::class)
+    ->name('home');
+
+Route::get('/employees/{employee:slug}', EmployeeShow::class)
+    ->name('employees.show');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -12,4 +18,4 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
